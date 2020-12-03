@@ -1,7 +1,7 @@
 let player: Sprite = null 
 let enemy: Sprite = null 
 let projectile: Sprite = null 
-info.setLife(10)
+info.setLife(3)
 info.setScore(0)
 
 
@@ -50,7 +50,7 @@ player.setPosition(20, 50)
 
 controller.moveSprite(player)
 
-game.onUpdateInterval(2000, function() {
+game.onUpdateInterval(1000, function() {
     enemy = sprites.create(img`
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
@@ -70,7 +70,7 @@ game.onUpdateInterval(2000, function() {
     . . . . . . . . . . . . . . . .
 `,SpriteKind.Enemy)
     enemy.setPosition(140,Math.randomRange(0, 100))
-    enemy.setVelocity(-50, 0)
+    enemy.setVelocity(-70, 0)
 })
 
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function(sprite: Sprite, otherSprite: Sprite) {
@@ -90,6 +90,10 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function(sprite: Spri
 
     if (info.score() > 5) {
         enemy.setVelocity(-100, 0)
+    }
+
+    if (info.score() > 10) {
+        enemy.setVelocity(-200, 0)
     }
     
 })
